@@ -70,17 +70,10 @@ pipeline {
                 }
             }
         }
-        stage('Stop Container') {
+        stage('Stop and Remove Container') {
             steps {
                 
-                bat "docker stop mvarun96/simple-java-web-app:latest"
-                
-            }
-        }
-        stage('Remove Container') {
-            steps {
-                
-                bat "docker rm mvarun96/simple-java-web-app:latest"
+                bat "docker ps -q --filter \"name=simple-java-web-app\" | (findstr . && docker stop simple-java-web-app && docker rm -fv simple-java-web-app) || echo \"No Container Running with name simple-java-web-app\""
                 
             }
         }
