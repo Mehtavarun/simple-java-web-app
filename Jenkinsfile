@@ -73,7 +73,7 @@ pipeline {
         stage('Stop and Remove Container') {
             steps {
                 
-                bat "docker ps -q --filter \"name=simple-java-web-app\" | (findstr . && docker stop simple-java-web-app && docker rm -fv simple-java-web-app) || echo \"No Container Running with name simple-java-web-app\""
+                bat "docker ps -aq --filter \"name=simple-java-web-app\" | (findstr . && docker stop simple-java-web-app && docker rm -fv simple-java-web-app) || echo \"No Container Running with name simple-java-web-app\""
                 
             }
         }
