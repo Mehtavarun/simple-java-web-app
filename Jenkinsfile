@@ -73,14 +73,14 @@ pipeline {
         stage('Stop and Remove Container') {
             steps {
                 
-                bat "docker ps -aq --filter \"name=simple-java-web-app\" | (findstr . && docker stop simple-java-web-app && docker rm -fv simple-java-web-app) || echo \"No Container Running with name simple-java-web-app\""
+                bat "docker ps -aq --filter \"name=simple-java-web-app\" | (findstr . && docker stop simple-java-web-app && docker rm -fv simple-java-web-app) || echo No Container Running with name simple-java-web-app"
                 
             }
         }
         stage('Run New Container') {
             steps {
                 
-                bat "docker run -d --name simple-java-web-app -p 8080:8080 mvarun96/simple-java-web-app:latest"
+                bat "docker run -d --name simple-java-web-app -p 8888:8080 mvarun96/simple-java-web-app:latest"
                 
             }
         }
